@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PackageDetailsPage</title>
+
+    <script>
+    // remove rows after 5 seconds
+    setTimeout(() => {
+    var allTrs = document.getElementsByTagName('tr');
+    for (var i=allTrs.length-1; i > 0; i--)
+       allTrs[i].remove();
+    }, 5000)
+
+    </script>
+</head>
+<body>
+<label>Nazwa działania</label>
+<table border="1" role="grid" width="100%">
+    <thead id="packageDetailsForm:packageDetailsListTable_head">
+    <tr role=row>
+        <th id="packageDetailsForm:packageDetailsListTable:j_idt115" role="columnheader">
+            <div class=ui-chkbox ui-chkbox-all ui-widget>
+                <div></div>
+                <div class=" ui-chkbox-box ui-widget ui-corner-all ui-state-default">
+                <span class="ui-chkbox-icon ui-icon ui-icon-blank">
+                    <input onclick="
+                    (function(parent){var allInputs = document.getElementsByTagName('input');
+                        for (var i=0; i < allInputs.length; i++)
+                            allInputs[i].checked = parent.checked;})(this)" type="checkbox">
+                </span>
+                </div>
+            </div>
+        </th>
+        <th id="packageDetailsForm:packageDetailsListTable:j_idt116">Id umowy</th>
+        <th id="packageDetailsForm:packageDetailsListTable:j_idt118">Host</th>
+        <th id="packageDetailsForm:packageDetailsListTable:j_idt119">Barcode</th>
+        <th id="packageDetailsForm:packageDetailsListTable:j_idt121">Portfel</th>
+    </tr>
+    </thead>
+    <tbody id="packageDetailsForm:packageDetailsListTable_data">
+    <tr data-ri="0" role="row">
+        <td role="gridcell"><input type="checkbox"></td>
+        <td role="gridcell">1</td>
+        <td role="gridcell">host 1</td>
+        <td role="gridcell">12342134</td>
+        <td role="gridcell">portfel1</td>
+    </tr>
+    <tr data-ri="1" role="row">
+        <td role="gridcell"><input type="checkbox"></td>
+        <td role="gridcell">2</td>
+        <td role="gridcell">host 3</td>
+        <td role="gridcell">12377734</td>
+        <td role="gridcell">portfel2</td>
+    </tr>
+    <tr data-ri="2" role="row">
+        <td role="gridcell"><input type="checkbox"></td>
+        <td role="gridcell">3</td>
+        <td role="gridcell">host 1</td>
+        <td role="gridcell">99342134</td>
+        <td role="gridcell">portfel3</td>
+    </tr>
+    </tbody>
+</table>
+<div class="ui-outputpanel ui-widget buttonWrapper" id="packageDetailsForm:j_idt166">
+    <button id="packageDetailsForm:confirmProcessBtn" name="packageDetailsForm:confirmProcessBtn" type="submit">
+        <span class="ui-button-text ui-c">Zatwierdź działanie
+        </span>
+    </button>
+</div>
+</body>
+</html>
