@@ -1,5 +1,6 @@
 package com.github.plawrynowicz.exampleproject.backend.test;
 
+import com.github.plawrynowicz.exampleproject.backend.dao.Status;
 import com.github.plawrynowicz.exampleproject.backend.dto.CreateStrategyDroolsResultPostDto;
 import com.github.plawrynowicz.exampleproject.backend.dto.StatusDto;
 import com.github.tomakehurst.wiremock.client.WireMock;
@@ -54,7 +55,6 @@ public class DocumentTest extends BackendTestBase {
 
 
         // 2
-
         // we don't have an application to test, so let's use a mock
         wiremock.stubFor(WireMock.get(STRATEGY_PATH_EXECUTION)
                 .willReturn(WireMock.aResponse().withStatus(200)));
@@ -71,27 +71,23 @@ public class DocumentTest extends BackendTestBase {
 
 
         // 3
-
         Awaitility.await()
                 .atMost(Duration.ofSeconds(60))
-                .until(() -> dao.getStrategyDroolsResultDao().findStatuses("FOR_REALIZATION", 10000, "DOCUMENT").isEmpty());
+                .until(() -> dao.getStrategyDroolsResultDao().findStatuses(Status.FOR_REALIZATION.toString(), 10000, "DOCUMENT").isEmpty());
 
         // 4
-
-        List<String> statuses = dao.getStrategyDroolsResultDao().findStatuses("IN_PROGRESS", 10000, "DOCUMENT");
-        assertThat(statuses.stream().filter(s -> !s.equals("IN_PROGRESS")).count()).isZero();
+        List<String> statuses = dao.getStrategyDroolsResultDao().findStatuses(Status.IN_PROGRESS.toString(), 10000, "DOCUMENT");
+        assertThat(statuses.stream().filter(s -> !s.equals(Status.IN_PROGRESS.toString())).count()).isZero();
 
         // 5
-
-        List<StatusDto> statusesFromStrategyDroolsResultAndDocument = dao.getStrategyDroolsResultDao().findStatusesFromStrategyDroolsResultAndDocument("IN_PROGRESS", 10000, "DOCUMENT");
+        List<StatusDto> statusesFromStrategyDroolsResultAndDocument = dao.getStrategyDroolsResultDao().findStatusesFromStrategyDroolsResultAndDocument(Status.IN_PROGRESS.toString(), 10000, "DOCUMENT");
         int documentCount = dao.getDocumentDao().count();
         // TODO perhaps 0 documents here should result in an exception
 
         assertThat(statusesFromStrategyDroolsResultAndDocument.size()).isEqualTo(documentCount);
 
         // 6
-
-        int documentsInProgressCount = dao.getDocumentDao().countByStatus("IN_PROGRESS");
+        int documentsInProgressCount = dao.getDocumentDao().countByStatus(Status.IN_PROGRESS.toString());
         assertThat(documentCount).isEqualTo(documentsInProgressCount);
     }
 

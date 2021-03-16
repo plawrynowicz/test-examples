@@ -34,7 +34,6 @@ public class MassSendTest extends FrontendTestBase {
         packageDetailsPage.confirmAction();
 
         // 7
-
         Awaitility.await()
                 .atMost(Duration.ofSeconds(10))
                 .until(packageDetailsPage::noDetailsVisible);

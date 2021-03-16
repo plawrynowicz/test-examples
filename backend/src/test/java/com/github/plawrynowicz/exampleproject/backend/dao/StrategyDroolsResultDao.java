@@ -40,7 +40,6 @@ public interface StrategyDroolsResultDao {
 
     @SqlUpdate("INSERT INTO StrategyProcess.dbo.StrategyDroolsResult (id, actionTypeId, status, segmentationId ) VALUES (:id, :actionTypeId, :status, :segmentationId)")
     void save(@BindBean StrategyDroolsResultEntity strategyDroolsResultEntity);
-//    void insertNamed(@Bind("clientIds") Long clientIds, @Bind("actionDefinitionId") Long actionDefinitionId, @Bind("segmentionId") Long segmentationId);
 
 
 }
